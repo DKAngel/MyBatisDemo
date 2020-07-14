@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="mysql.properties"/>
+
+    <!-- 别名扫描，否则 mapper.xml 中的 resultMap type需要写全包名 -->
+    <typeAliases>
+        <package name="com.example.demo.entity"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${Driver}"/>
+                <property name="url" value="${Url}"/>
+                <property name="username" value="${Username}"/>
+                <property name="password" value="${Password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!-- 如果包含多级目录，需要一层一层的创建，不能直接用点创建(com.demo.mapper) -->
+        <!-- https://blog.csdn.net/lmy86263/article/details/53428417 -->
+        <mapper resource="com/example/demo/mapper/UserMapper.xml"/>
+    </mappers>
+</configuration>
